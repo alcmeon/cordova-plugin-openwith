@@ -113,7 +113,7 @@
         [self.userDefaults setObject:dict forKey:SHAREEXT_USERDEFAULTS_DATA_KEY];
         [self.userDefaults synchronize];
         // Emit a URL that opens the cordova app
-        NSString *url = [NSString stringWithFormat:@"%@://%@", @"cxm", @"share"];
+        NSString *url = [NSString stringWithFormat:@"%@://share", SHAREEXT_APP_URL_SCHEME];
         // I don't know why but here we need to wait for some time. If the user choose the share icon from the expanded list, it looks like we
         // should leave some time for the list to be closed.
         [NSThread sleepForTimeInterval:0.5];
@@ -135,7 +135,7 @@
 }
 
 // We need to do video format transformation here
-- (void *) saveMovieToAppGroupFolder: (NSURL *) sourceUrl :(int) movieIndex :(NSItemProvider *) itemProvider {
+- (void) saveMovieToAppGroupFolder: (NSURL *) sourceUrl :(int) movieIndex :(NSItemProvider *) itemProvider {
     assert( NULL != sourceUrl );
     NSURL * containerURL = [[NSFileManager defaultManager] containerURLForSecurityApplicationGroupIdentifier: SHAREEXT_GROUP_IDENTIFIER];
     NSString *documentsPath = containerURL.path;

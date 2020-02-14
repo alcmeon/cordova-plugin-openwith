@@ -237,9 +237,7 @@ static NSDictionary* launchOptions = nil;
     CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{
         @"action": @"SEND",
         @"exit": @YES,
-        @"items": @[@{
-            @"items": dict[@"items"]
-        }]
+        @"items": dict[@"items"]
     }];
 
     pluginResult.keepCallback = [NSNumber numberWithBool:YES];

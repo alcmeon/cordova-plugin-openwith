@@ -41,8 +41,6 @@ SOFTWARE.
 
     <!-- ios -->
     <platform name="ios">
-        <preference name="IOS_URL_SCHEME" />
-        <preference name="IOS_UNIFORM_TYPE_IDENTIFIER" />
 
         <js-module src="www/openwith.js" name="openwith">
             <clobbers target="cordova.openwith" />
@@ -65,19 +63,21 @@ SOFTWARE.
             <array>
                 <dict>
                     <key>CFBundleURLName</key>
-                    <string>cc.fovea.openwith.$IOS_URL_SCHEME.shareextension</string>
+                    <string>cc.fovea.openwith.openwithcxm.shareextension</string>
                     <key>CFBundleURLSchemes</key>
                     <array>
-                        <string>$IOS_URL_SCHEME</string>
+                        <string>openwithcxm</string>
                     </array>
                 </dict>
             </array>
         </config-file>
 
-        <hook type="after_platform_add" src="hooks/iosAddAppGroup.js" />
-        <hook type="after_platform_add" src="hooks/iosAddTarget.js" />
         <hook type="before_plugin_install" src="hooks/npmInstall.js" />
         <hook type="before_plugin_install" src="hooks/iosCopyShareExtension.js" />
+        <hook type="after_platform_add" src="hooks/iosAddAppGroup.js" />
+        <hook type="after_platform_add" src="hooks/iosAddTarget.js" />
+        <hook type="after_plugin_add" src="hooks/iosAddAppGroup.js" />
+        <hook type="after_plugin_add" src="hooks/iosAddTarget.js" />
         <hook type="before_plugin_uninstall" src="hooks/iosRemoveTarget.js" />
 
         <framework src="MobileCoreServices.framework" />
