@@ -53,42 +53,22 @@ On the Cordova App side, the plugin checks listens for app start or resume event
 
 ## Installation
 
-Here's the promised one liner:
-
 ```
-cordova plugin add cordova-plugin-openwith-cxm \
-  --variable ANDROID_MIME_TYPE="image/*" \
-  --variable IOS_URL_SCHEME=ccfoveaopenwithdemo \
-  --variable IOS_UNIFORM_TYPE_IDENTIFIER=public.image
+cordova plugin add cordova-plugin-openwith \
+  --variable ANDROID_MIME_TYPE="image/*" 
 ```
 
 | variable | example | notes |
 |---|---|---|
 | `ANDROID_MIME_TYPE` | image/* | **Android only** Mime type of documents you want to share (wildcards accepted) |
-| `IOS_URL_SCHEME` | uniquelonglowercase | **iOS only** Any random long string of lowercase alphabetical characters |
-| `IOS_UNIFORM_TYPE_IDENTIFIER` | public.image | **iOS only** UTI of documents you want to share (check [Apple's System-Declared UTI](https://developer.apple.com/library/content/documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html#//apple_ref/doc/uid/TP40009259-SW1)) |
-| `IOS_GROUP_IDENTIFIER` | group.my.app.id | **iOS only** Custom app group name. Default is `group.<YOUR_APP_BUNDLE_ID>.shareextension`. |
-| `SHAREEXT_PROVISIONING_PROFILE` | 9dfsdf-.... | **iOS only** Developer account teamId |
-| `SHAREEXT_DEVELOPMENT_TEAM` | 00B000A09l | **iOS only** UUID of provisioning profile for singing |
 
-It shouldn't be too hard. But just in case, I [posted a screencast of it](https://youtu.be/eaE4m_xO1mg).
 
 ### iOS Setup
 
-After having installed the plugin, with the ios platform in place, 1 operation needs to be done manually: setup the App Group on both the Cordova App and the Share Extension.
+After having installed the plugin, you might need to remove then re-add the ios platform (I haven't tried yet to reinstall our app from scratch)
 
- 1. open the **xcodeproject** for your application
- 1. select the root element of your **project navigator** (the left-side pane)
- 1. select the **target** of your application
- 1. select **capabilities**
- 1. scroll down to **App Groups**
- 1. make sure it's **ON**
- 1. create and activate an **App Group** called: `group.<YOUR_APP_BUNDLE_ID>.shareextension`
- 1. repeat the previous five steps for the **ShareExtension target**.
-
-You might also have to select a Team for both the App and Share Extension targets, make sure to select the same.
-
-Build, XCode might complain about a few things to setup that it will fix for you (creation entitlements files, etc).
+Then you might need to uncheck then re-check automatic provisionning in XCode, select a developmemt team, and check the `group.<bundle-id>.sharextension` group in the App Groups section,
+both for the main target and the share extension target.
 
 ### Advanced installation options
 
